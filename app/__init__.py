@@ -12,6 +12,10 @@ def create_app():
     app.config.from_object('config')
     app.register_blueprint(mqtt_start)
     app.register_blueprint(mqtt_stop)
+
     socketio.init_app(app)
+
+    from app import socketio_events
+
     return app
 

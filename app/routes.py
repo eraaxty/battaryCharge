@@ -3,7 +3,7 @@ from flask import current_app as app
 from .mqtt import mqtt_client_connect, mqtt_client_disconnect, messages
 import importlib
 import config
-import time
+
 
 
 import json
@@ -13,6 +13,8 @@ user = Blueprint('user', __name__)
 regsiter = Blueprint('regsiter', __name__)
 mqtt_start = Blueprint('mqtt_start', __name__)
 mqtt_stop = Blueprint('mqtt_stop', __name__)
+
+
 
 
 
@@ -83,4 +85,5 @@ def stop_mqtt():
         message = str(e)
 
     return render_template('index.html', message=message), 400
+
 
