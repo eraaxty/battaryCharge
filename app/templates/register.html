@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <title>Ferroamp-controler</title>
+    <link rel="stylesheet" href="static/style.css">
+    <script src="static/script.js"></script>
+</head>
+
+
+<body>
+
+    <section>
+        <div id="control_panel">
+        <p class="control_font">Ferroamp</p>
+            <ul>
+                <li><a class="menu_font" href="/" >Tillbaka</a> </li>
+            </ul>
+        </div>
+    </section>
+
+<section id="container">
+    <div>
+        <form action="/user" method="post" >
+            <label for="username">Username:</label><br>
+            <input type="text" name="username" id="username" required><br>
+            <label for="password">Password:</label><br>
+            <input type="password" name="password" id="password" required><br>
+            <label for="broker">Broker:</label><br>
+            <input type="text" name="broker" id="broker" required><br>
+            <label for="port">Port:</label><br>
+            <input type="number" name="port" id="port" required><br>
+            <label for="topic">Topic:</label><br>
+            <input type="text" name="topic" id="topic" required><br>
+            <label for="client_id">Client ID:</label><br>
+            <input type="text" name="client_id" id="client_id" required><br>
+            <input type="submit" value="Register"><br>
+            <input type="text" id="response" name="response" value="{{ message }}" disabled>
+        </form>
+    </div>
+
+
+
+</section>
+
+</body>
+
+</html>

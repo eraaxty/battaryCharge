@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <title>Ferroamp-controler</title>
+    <link rel="stylesheet" href="static/style.css">
+    <script src="static/script.js"></script>
+</head>
+
+
+<body>
+
+    <section>
+        <div id="control_panel">
+            <p class="control_font">Ferroamp</p>
+            <input type="feedback"  value="{{ message }}" disabled>
+                <ul>
+                    <li><a class="menu_font" href="/stop" >Avsluta</a> </li>
+                    <li><a class="menu_font" href="register" >Mitt Konto</a> </li>
+                    <li><a class="menu_font" href="/start" >Start</a> </li>
+                </ul>
+          </div>
+    </section>
+
+    <section id="container">
+        <div>
+            <form action="/sse" method="post">
+                <label for="power">Batteri effekt</label><br>
+                <input type="text" id="response" value="{{ message }}" disabled>
+            </form>
+        </div>
+    </section>
+
+</body>
+
+</html>
+
