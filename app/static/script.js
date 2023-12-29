@@ -15,8 +15,9 @@ window.onload = clearMessage;
             //}, 7000);
         }
 
-var socket = io.connect('http://' + window.location.hostname + ':' + location.port);
-socket.on('new_message', function(data) {
-    // Handle the payload here. For example, you can log it to the console:
-    console.log(data.message);
-});
+var brocker= new EventSource('/sse');
+
+brocker.onmessage = function(event) {
+    var sseData = document.getElementById('sse-data');
+    sseData.value = event.data;
+};

@@ -15,9 +15,6 @@ mqtt_start = Blueprint('mqtt_start', __name__)
 mqtt_stop = Blueprint('mqtt_stop', __name__)
 
 
-
-
-
 @main.route('/')
 def index():
     return render_template('index.html')
@@ -87,3 +84,14 @@ def stop_mqtt():
     return render_template('index.html', message=message), 400
 
 
+@main.route('/sse')
+def sse():
+    def generate():
+
+        while True:
+            if messages:
+                # Send the latest message as an SSE event
+                message = messages.pop(0)
+                yield f"data: {message}\n\n"
+
+    return Response(generate(), content_type='text/event-stream')

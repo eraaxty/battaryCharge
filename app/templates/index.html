@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Ferroamp-controler</title>
     <link rel="stylesheet" href="static/style.css">
-    <script src="static/script.js"></script>
+
 </head>
 
 
@@ -26,11 +26,12 @@
         <div>
             <form action="/sse" method="post">
                 <label for="power">Batteri effekt</label><br>
-                <input type="text" id="response" value="{{ message }}" disabled>
+                <input type="text" id="sse-data" disabled>
             </form>
         </div>
     </section>
 
+<script src="static/script.js"></script>
 </body>
 
 </html>
