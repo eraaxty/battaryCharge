@@ -3,6 +3,7 @@ MQTT_CONNECTION_DATA={
     "password": "ferroampExtApi",
     "broker": "192.168.1.251",
     "port": 1883,
-    "topic": "extapi/data/ehub",
+    "sse_topic": "extapi/data/ehub",
+    "payload_topic": "extapi/control/request",
     "client_id": "extapi"
 }

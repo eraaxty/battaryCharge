@@ -19,27 +19,29 @@
         </div>
     </section>
 
-<section id="container">
-    <div>
-        <form action="/user" method="post" >
-            <label for="username">Username:</label><br>
-            <input type="text" name="username" id="username" required><br>
-            <label for="password">Password:</label><br>
-            <input type="password" name="password" id="password" required><br>
-            <label for="broker">Broker:</label><br>
-            <input type="text" name="broker" id="broker" required><br>
-            <label for="port">Port:</label><br>
-            <input type="number" name="port" id="port" required><br>
-            <label for="topic">Topic:</label><br>
-            <input type="text" name="topic" id="topic" required><br>
-            <label for="client_id">Client ID:</label><br>
-            <input type="text" name="client_id" id="client_id" required><br>
-            <input type="submit" value="Register"><br>
-            <input type="text" id="response" name="response" value="{{ message }}" disabled>
-        </form>
+<section>
+    <div id="part">
+        <div id="part_monitor">
+            <form action="/user" method="post" >
+                <label for="username">Username:</label><br>
+                <input type="text" name="username" id="normal-data" required><br>
+                <label for="password">Password:</label><br>
+                <input type="password" name="password" id="normal-data" required><br>
+                <label for="broker">Broker:</label><br>
+                <input type="text" name="broker" id="normal-data" required><br>
+                <label for="port">Port:</label><br>
+                <input type="number" name="port" id="normal-data" required><br>
+                <label for="topic">Topic:</label><br>
+                <input type="text" name="sse_topic" id="normal-data" required><br>
+                <label for="topic2">Topic2:</label><br>
+                <input type="text" name="payload_topic" id="normal-data" required><br>
+                <label for="client_id">Client ID:</label><br>
+                <input type="text" name="client_id" id="normal-data" required><br>
+                <input type="submit" value="Register"><br>
+                <input type="text" id="response" value="{{ message }}" disabled>
+            </form>
+        </div>
     </div>
-
-
 
 </section>
 

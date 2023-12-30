@@ -13,7 +13,7 @@
     <section>
         <div id="control_panel">
             <p class="control_font">Ferroamp</p>
-            <input type="feedback" id="response"  value="{{ message }}" disabled>
+            <input type="feedback" id="response" value="{{ message }}" disabled>
                 <ul>
                     <li><a class="menu_font" href="/stop" >Avsluta</a> </li>
                     <li><a class="menu_font" href="register" >Mitt Konto</a> </li>
@@ -22,12 +22,39 @@
           </div>
     </section>
 
-    <section id="container">
-        <div>
-            <form action="/sse" method="post">
-                <label for="power">Batteri effekt</label><br>
-                <input type="text" id="sse-data" disabled>
-            </form>
+    <section>
+        <div id="part">
+            <div  id="part_monitor">
+                <form action="/sse" method="post">
+                    <label for="power">Batteri effekt</label><br>
+                    <input id="sse-data" disabled>
+                </form><br>
+            </div>
+
+
+            <div id="part_control">
+                <form action="/automode" method="post">
+                    <label>Autoläge</label>
+                    <input type="submit" value="Skicka">
+                </form><br>
+
+                <form name="chargeForm" action="/charge" method="post" onsubmit="return validateForm()">
+                    <label for="charge">Laddningseffekt (watt)</label><br>
+                    <input type="text" name="charge" id="normal-data"><br>
+                    <label for="grans">Laddningsgräns</label><br>
+                    <input type="text" name="grans" id="normal-data"><br>
+                    <input type="submit" value="skicka">
+                </form><br>
+
+
+                <form name="dissChargeForm" action="/discharge" method="post" onsubmit="return validateFormD()">
+                    <label for="discharge">Urladdningseffekt (watt)</label><br>
+                    <input type="text" name="discharge" id="normal-data"><br>
+                    <label for="Lgrans">Urladdningsgräns</label><br>
+                    <input type="text" name="Lgrans" id="normal-data"><br>
+                    <input type="submit" value="Skicka">
+                </form>
+            </div>
         </div>
     </section>
 

@@ -8,6 +8,16 @@ import time
 messages = []
 
 
+class MQTTPayload:
+    def __init__(self, transId, cmd_name, cmd_arg=None):
+        self.transId = transId
+        self.cmd_name = cmd_name
+        self.cmd_arg = cmd_arg
+
+    def to_dict(self):
+        return self.__dict__
+
+
 def mqtt_client_connect(MQTT_CONNECTION_DATA):
     client = mqtt.Client()
 
@@ -24,9 +34,10 @@ def mqtt_client_connect(MQTT_CONNECTION_DATA):
         current_app.config['MQTT_CONNECTION_DATA']['port']
     )
 
-    client.subscribe(
-        current_app.config['MQTT_CONNECTION_DATA']['topic']
-    )
+    client.subscribe(current_app.config['MQTT_CONNECTION_DATA']['sse_topic'])
+
+    client.subscribe(current_app.config['MQTT_CONNECTION_DATA']['payload_topic'])
+
 
     client.loop_start()
     time.sleep(3)
@@ -43,5 +54,22 @@ def on_message(client, userdata, msg):
     payload = json.loads(msg.payload.decode())
     power = payload.get('soc', {})
     for key, value in power.items():
-        messages.append(value)
+        rounded_value= round(float(value), 1)
+        messages.append(rounded_value)
         print(messages[-1])
+
+
+def send_payload_to_mqtt(payload_data, client):
+    payload ={
+        'transId': payload_data['transId'],
+        'cmd': {
+            'name': payload_data['cmd_name'],
+            'arg': payload_data['cmd_arg']
+        }
+    }
+    payload_jason = json.dumps(payload)
+    print(f'Payload: {payload_jason}')
+    client.publish(
+        current_app.config['MQTT_CONNECTION_DATA']['payload_topic'],
+        payload_jason
+    )
