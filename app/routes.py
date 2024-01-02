@@ -1,8 +1,11 @@
 from flask import Blueprint, current_app, render_template,request, Response
 from flask import current_app as app
 from .mqtt import mqtt_client_connect, mqtt_client_disconnect, messages, send_payload_to_mqtt
+from datetime import datetime
 import importlib
+from time import sleep
 import config
+
 
 
 
@@ -96,6 +99,17 @@ def sse():
                 # Send the latest message as an SSE event
                 message = messages.pop(0)
                 yield f"data: {message}\n\n"
+
+    return Response(generate(), content_type='text/event-stream')
+
+
+@main.route('/time', methods=['GET'])
+def time():
+    def generate():
+        while True:
+            current_time = datetime.now().strftime("%H:%M")
+            yield f"data: {current_time}\n\n"
+            sleep(10)
 
     return Response(generate(), content_type='text/event-stream')
 

@@ -21,3 +21,11 @@ brocker.onmessage = function(event) {
     var sseData = document.getElementById('sse-data');
     sseData.value = event.data;
 };
+
+
+var time= new EventSource('/time');
+
+time.onmessage = function(event) {
+    var timeData = document.getElementById('time');
+    timeData.value = event.data;
+};
