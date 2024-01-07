@@ -1,4 +1,5 @@
 from app import create_app, socketio
+from application import app
 
 app=create_app()
 

@@ -1,6 +1,6 @@
 import paho.mqtt.client as mqtt
 from flask import current_app
-
+from application import app
 import json
 import time
 
@@ -60,16 +60,17 @@ def on_message(client, userdata, msg):
 
 
 def send_payload_to_mqtt(payload_data, client):
-    payload ={
-        'transId': payload_data['transId'],
-        'cmd': {
-            'name': payload_data['cmd_name'],
-            'arg': payload_data['cmd_arg']
+    with app.app_context():
+        payload ={
+            'transId': payload_data['transId'],
+            'cmd': {
+                'name': payload_data['cmd_name'],
+                'arg': payload_data['cmd_arg']
+            }
         }
-    }
-    payload_jason = json.dumps(payload)
-    print(f'Payload: {payload_jason}')
-    client.publish(
-        current_app.config['MQTT_CONNECTION_DATA']['payload_topic'],
-        payload_jason
-    )
+        payload_jason = json.dumps(payload)
+        print(f'Payload: {payload_jason}')
+        client.publish(
+            app.config['MQTT_CONNECTION_DATA']['payload_topic'],
+            payload_jason
+        )

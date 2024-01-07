@@ -33,35 +33,57 @@
             </div>
 
                 <div  id="part_monitor">
-                    <form action="/time" method="post">
+                    <form>
                         <label for="time">Tid</label><br>
-                        <input id="time" disabled>
+                        <input id="time">
                     </form><br>
+
                 </div>
             </div>
-
+            <div id="part_middle">
             <div id="part_control">
                 <form action="/automode" method="post">
                     <label>Autoläge</label>
                     <input type="submit" value="Skicka">
                 </form><br>
 
-                <form name="chargeForm" action="/charge" method="post" onsubmit="return validateForm()">
+                <form id="control_form" name="chargeForm" action="/charge" method="post" onsubmit="return validateForm();">
                     <label for="charge">Laddningseffekt (watt)</label><br>
-                    <input type="text" name="charge" id="normal-data"><br>
-                    <label for="grans">Starttid</label><br>
-                    <input type="text" name="grans" id="normal-data"><br>
-                    <input type="submit" value="skicka">
+                    <input type="number" name="charge" id="charge" step="1"><br>
+                    <label for="start_time">Starttid</label><br>
+                    <input type="time" name="start_time" id="start_time"><br>
+                    <input type="submit" value="Spara">
                 </form><br>
 
 
                 <form name="dissChargeForm" action="/discharge" method="post" onsubmit="return validateFormD()">
                     <label for="discharge">Urladdningseffekt (watt)</label><br>
-                    <input type="text" name="discharge" id="normal-data"><br>
-                    <label for="Lgrans">Starttid</label><br>
-                    <input type="text" name="Lgrans" id="normal-data"><br>
-                    <input type="submit" value="Skicka">
+                    <input type="number" name="discharge" id="discharge" step="1"><br>
+                    <label for="discharge_time">Starttid</label><br>
+                    <input type="time" name="discharge_time" id="discharge_time"><br>
+                    <input type="submit" value="Spara">
                 </form>
+            </div>
+
+             <div id="part_feedback">
+                 <form>
+                     <label>Kommande händelser</label>
+                </form><br>
+                <form name="feedback_charge">
+                    <label for="on_saved">Laddningseffekt (watt)</label><br>
+                    <input id="charge_feedback" disabled><br>
+
+                    <label for="on_saved">Starttid</label><br>
+                    <input id="start_time_feedback" disabled><br>
+                </form><br>
+
+                <form name="feedback_dissCharge">
+                    <label for="on_savedD">Urladdningseffekt (watt)</label><br>
+                    <input id="discharge_feedback" disabled><br>
+                    <label for="on_savedD">Starttid</label><br>
+                    <input id="discharge_time_feedback" disabled><br>
+                </form>
+            </div>
             </div>
         </div>
     </section>
